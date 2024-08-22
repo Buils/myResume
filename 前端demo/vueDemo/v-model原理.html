@@ -1,0 +1,42 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.4.37/vue.global.js"></script> <!-- 使用global版本 -->  
+    <title>Vue 3 示例</title>  
+</head>  
+<body>  
+  
+<div id="app">  
+    <input type="text" v-model="message">  
+    <p>{{ message }}</p>  
+    ---------------------------------------------------------<br>
+    <input type="text" :value="message2" @input="message2 = $event.target.value">  
+    <p>{{ message2 }}</p>  
+</div>  
+  
+<script>  
+    // Vue 3 使用 createApp 替代 new Vue  
+    const { createApp, ref } = Vue;  
+  
+    // 创建一个响应式数据  
+    const message = ref('hello world');  
+    const message2 = ref('hello world2');  
+  
+    // 创建Vue应用  
+    const app = createApp({  
+        setup() {  
+            // setup函数返回的对象中的所有属性或方法都将暴露给模板  
+            return {  
+                message,message2
+            };  
+        }  
+    });  
+  
+    // 挂载Vue应用到DOM元素  
+    app.mount('#app');  
+</script>  
+  
+</body>  
+</html>

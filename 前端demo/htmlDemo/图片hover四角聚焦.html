@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{background: #000;}
+       
+        .container{
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 使用fr单位 */  
+            gap: 30px; /* 假设--gap是一个定义好的CSS变量 */  
+            width: calc(100% - 30px * 2); /* 确保容器宽度 */  
+            margin: 30px;
+            box-sizing: border-box; /* 包含padding和border */ 
+        }
+        .container img{width: 100%;}
+        .pointer{
+            --gap:15px;
+            --lineWidth:30px;
+            --thinkness:3px;
+            --imgWidthSize:240px;
+            --imgHeightSize:240px;
+            --x:0px;
+            --y:0px;
+            position: absolute;
+            width: calc(var(--imgWidthSize) - var(--thinkness) * 2 + var(--gap) * 2);
+            height: calc(var(--imgHeightSize) - var(--thinkness) * 2 + var(--gap) * 2);
+            left: calc(var(--x) - var(--gap));
+            top: calc(var(--y) - var(--gap));
+            border: var(--thinkness) solid #fff;
+            transition: all 0.3s;
+            mask: conic-gradient(
+                at var(--lineWidth) var(--lineWidth),
+                transparent 75%,
+                blue 75% 100%
+            ) 0 0 / calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)) repeat;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pointer"></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=1" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=2" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=3" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=4" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=5" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=6" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=7" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=8" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=9" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/400?random=10" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/500?random=11" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/600/1000?random=12" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=13" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=14" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=15" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=16" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=17" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=18" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=19" alt=""></div>
+        <div class="imgItem"><img src="https://picsum.photos/200?random=20" alt=""></div>
+    </div>
+</body>
+
+<script>
+    const  imgs   = document.querySelectorAll('.container img');
+    const pointer = document.querySelector('.pointer');
+
+    for (const img of imgs) {
+       img.onmouseenter = ()=>{
+           pointer.style.setProperty('--x', img.offsetLeft + 'px');
+           pointer.style.setProperty('--y', img.offsetTop + 'px');
+           pointer.style.setProperty('--imgWidthSize', img.offsetWidth + 'px');
+           pointer.style.setProperty('--imgHeightSize', img.offsetHeight + 'px');
+       }
+    }
+</script>
+</html>

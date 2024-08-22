@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        (function randomNumber(){
+            const rn = Math.floor(Math.random()*10);
+            console.log('random',rn)
+        })()
+
+        const myFunction = function(){
+           const num1 = 5;
+           const num2 = 10;
+           const obj1 = {a:1,b:2}
+           Object.is(num1,num2) ? console.log('相等') : console.log('不相等')
+        //    Object.freeze(obj1) //冻结对象
+           console.log('obj1',Object.isFrozen(obj1))//true
+           console.log('num1',num1)
+           console.log('num1',Object.isFrozen(num1))//true
+        }
+        myFunction()
+
+        // es6构造函数
+        console.log('es6构造函数-------------------------------------')
+        class Student{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+                // 限制age的类型是number
+                if(typeof age !== 'number'){
+                    throw new Error('age must be a number')
+                }
+            }
+            sayInfo(){
+                console.log(`我叫${this.name},今年${this.age}岁,明年${this.age+1}岁`)
+            }
+        }
+        const s1 = new Student('张三',18);
+        s1.sayInfo();
+        console.log('s1',s1)
+        console.log('es6构造函数-------------------------------------')
+
+        // es5构造函数
+        console.log('es5构造函数-------------------------------------')
+        function student(name,age){
+            this.name = name; // 构造函数中的this指向实例对象
+            this.age = age;
+        }
+        student.prototype.sayInfo = ()=>{
+            //为什么这里可以写箭头函数？
+            // 因为箭头函数没有自己的this，它会继承外层作用域的this值，所以这里的this指向实例对象
+            console.log(`我叫${this.name},今年${this.age}岁,明年${this.age+1}岁`)
+        }
+        const s2 = new student('李四',20);
+        s2.sayInfo();
+        console.log('s2',s2)
+        console.log('es5构造函数-------------------------------------')
+
+        // 为什么要用构造函数，什么是构造函数，为什么叫构造函数
+        // 构造函数是用于创建对象的函数，通过new关键字调用构造函数，可以创建一个新的对象，并且将构造函数的属性和方法添加到新创建的对象中。
+        // 构造函数的命名通常以大写字母开头，以区别于普通函数。
+        // 构造函数的作用是初始化对象的属性和方法，以便在创建对象时使用。
+
+        const arr = ['a','b','c'];
+        console.log('arr',arr)
+        const arrObj = {a:'a',b:'b',c:'c'};
+        console.log('arrObj',arrObj)
+        const arrObj2 = Object.assign({},arrObj);
+        console.log('arrObj2',arrObj2)
+        Object.keys(arrObj).forEach(key=>{
+            console.log('key',key)
+        })
+        Object.values(arrObj).forEach(value=>{
+            console.log('value',value)
+        })
+        Object.entries(arrObj).forEach(entry=>{
+            console.log('entry',entry)
+        })
+        Object.defineProperties(arrObj,{
+            a:{
+                value:'a',
+                writable:false,
+                configurable:false,
+                enumerable:true
+            },
+            b:{
+                value:'b',
+                writable:false,
+                configurable:false,
+                enumerable:true
+            },
+            c:{
+                value:'c',
+                writable:false,
+                configurable:false,
+                enumerable:true
+            }
+
+        })
+        console.log('arrObj',arrObj)
+
+
+    </script>
+</body>
+</html>
